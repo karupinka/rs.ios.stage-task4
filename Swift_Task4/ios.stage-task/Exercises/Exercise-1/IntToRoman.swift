@@ -7,9 +7,10 @@ public extension Int {
         let intrNumbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
         var num: Int = self
 
-        guard self > 0  else {
-            return nil
-        }
+        guard self > 0  else { return nil }
+        
+        guard self <= 3999  else { return nil }
+    
         var result = ""
         while (num > 0) {
             for (index, i) in intrNumbers.enumerated() {
