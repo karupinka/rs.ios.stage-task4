@@ -8,9 +8,9 @@ final class FillWithColor {
         guard column >= 0 else { return image }
         
         guard image.count >= 0 else { return image }
+        guard row < image.count else { return image }
         guard image[row].count <= 50 else { return image }
-        guard row <= image.count else { return image }
-        guard column <= image[row].count else { return image }
+        guard column < image[row].count else { return image }
         
         var output = image
         let number = image[row][column]
