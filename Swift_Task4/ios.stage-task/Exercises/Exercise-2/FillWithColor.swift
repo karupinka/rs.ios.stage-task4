@@ -4,8 +4,17 @@ final class FillWithColor {
     
     func fillWithColor(_ image: [[Int]], _ row: Int, _ column: Int, _ newColor: Int) -> [[Int]] {
         guard newColor < 65536 else { return image }
+        guard row >= 0 else { return image }
+        guard column >= 0 else { return image }
+        
+        guard image.count >= 0 else { return image }
+        guard image[row].count <= 50 else { return image }
+        guard row <= image.count else { return image }
+        guard column <= image[row].count else { return image }
+        
         var output = image
         let number = image[row][column]
+        guard number >= 0 else { return image }
         var rowTmpBack = row - 1;
         var rowTmpNext = row + 1;
         output[row] = fillWithColorRow(output[row], column, number, newColor)
