@@ -20,14 +20,14 @@ final class FillWithColor {
         output[row] = fillWithColorRow(output[row], column, number, newColor)
             
         while rowTmpBack >= 0 {
-            output[rowTmpBack] = fillWithColorRow(image[rowTmpBack], column, number, newColor)
-            output[rowTmpBack] = fillWithColorRowWithLastRow(image: image[rowTmpBack], imageLast: image[rowTmpBack + 1], newColor: newColor, number: number)
+            output[rowTmpBack] = fillWithColorRow(output[rowTmpBack], column, number, newColor)
+            output[rowTmpBack] = fillWithColorRowWithLastRow(image: output[rowTmpBack], imageLast: output[rowTmpBack + 1], newColor: newColor, number: number)
             rowTmpBack -= 1
         }
             
         while rowTmpNext < image.count {
             output[rowTmpNext] = fillWithColorRow(image[rowTmpNext], column, number, newColor)
-            output[rowTmpNext] = fillWithColorRowWithLastRow(image: image[rowTmpNext], imageLast: image[rowTmpNext - 1], newColor: newColor, number: number)
+            output[rowTmpNext] = fillWithColorRowWithLastRow(image: image[rowTmpNext], imageLast: output[rowTmpNext - 1], newColor: newColor, number: number)
             rowTmpNext += 1
         }
     
