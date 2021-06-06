@@ -20,14 +20,16 @@ final class FillWithColor {
         output[row] = fillWithColorRow(output[row], column, number, newColor)
             
         while rowTmpBack >= 0 {
-            output[rowTmpBack] = fillWithColorRow(output[rowTmpBack], column, number, newColor)
+            //output[rowTmpBack] = fillWithColorRow(output[rowTmpBack], column, number, newColor)
             output[rowTmpBack] = fillWithColorRowWithLastRow(image: output[rowTmpBack], imageLast: output[rowTmpBack + 1], newColor: newColor, number: number)
+            output[rowTmpBack] = fillColorRow(output[rowTmpBack], newColor, number)
             rowTmpBack -= 1
         }
             
         while rowTmpNext < image.count {
-            output[rowTmpNext] = fillWithColorRow(image[rowTmpNext], column, number, newColor)
-            output[rowTmpNext] = fillWithColorRowWithLastRow(image: image[rowTmpNext], imageLast: output[rowTmpNext - 1], newColor: newColor, number: number)
+            //output[rowTmpNext] = fillWithColorRow(output[rowTmpNext], column, number, newColor)
+            output[rowTmpNext] = fillWithColorRowWithLastRow(image: output[rowTmpNext], imageLast: output[rowTmpNext - 1], newColor: newColor, number: number)
+            output[rowTmpNext] = fillColorRow(output[rowTmpNext], newColor, number)
             rowTmpNext += 1
         }
     
@@ -72,6 +74,55 @@ final class FillWithColor {
                 continueNext = false
             }
         }
+    
+    return output
+    
+    }
+    
+    func fillColorRow(_ image: [Int], _ newColor: Int, _ number: Int) -> [Int] {
+        var output = image
+        var index = [Int]()
+        var continueNext = true
+        
+        for (indexTmp, color) in image.enumerated() {
+            if color == newColor {
+                index.append(indexTmp)
+            }
+        }
+        for indexNum in index {
+            var columnTmpBack = indexNum - 1;
+            var columnTmpNext = indexNum + 1;
+
+            while continueNext {
+                if columnTmpBack < 0 {
+                    continueNext = false
+                    break
+                }
+                if number == image[columnTmpBack] {
+                    output[columnTmpBack] = newColor
+                    columnTmpBack -= 1
+                } else {
+                    continueNext = false
+                }
+            }
+            
+            continueNext = true
+            
+            while continueNext {
+                if columnTmpNext >= image.count {
+                    continueNext = false
+                    break
+                }
+                
+                if number == image[columnTmpNext] {
+                    output[columnTmpNext] = newColor
+                    columnTmpNext += 1
+                } else {
+                    continueNext = false
+                }
+            }
+        }
+        
     
     return output
     
